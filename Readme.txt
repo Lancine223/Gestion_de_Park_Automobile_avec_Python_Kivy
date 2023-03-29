@@ -4,10 +4,12 @@ Introduction
 Thank you for downloading my "TS Block" Font for Windows, I hope you enjoy using it.
 This is FREEWARE (NOT FOR SALE/NOT FOR COMMERIAL USE).
 (This Read must be include with this font.) 
+you have to visite only too files such as Auto.py and loglog.kv
+thank to visite my folder and keep in touch for more new from Mr LancinÃ© Keita.
 
 Requirements
 ~~~~~~~~~~~~
-Windows 98,2000,Me®,XP®
+Windows 98,2000,MeÂ®,XPÂ®
 
 Install
 ~~~~~~~
