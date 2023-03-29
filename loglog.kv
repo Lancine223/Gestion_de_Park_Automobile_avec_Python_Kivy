@@ -1,0 +1,2523 @@
+WindowManager:
+    FirstWindow:
+    SecondWindow:
+    ThirdWindow:
+    FourWindow:
+    FiveWindow:
+    CreerUsers:
+    PassOublier:
+    CustomerWindow:
+    
+
+<FirstWindow>:
+    name: "first"
+    Screen:
+        MDSmartTile:
+            hint_animation:True
+
+            box_color: 1, 1, 1, .2
+            source: "LLL.jpg"
+        MDTopAppBar:
+
+            title:"Bienvénue Sur Ma Page Login!"
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "blue"
+            halign: "center"
+            elevation: 4
+            pos_hint: {"top": 1}
+            md_bg_color: 0,1,1,1
+            specific_text_color: 0, 0, 0, 1
+            left_action_items:
+                [['menu', lambda x: nav_drawer.set_state("open")]]
+
+
+        MDCard:
+            size_hint: None, None
+            size: 700, 500
+            pos_hint: {"center_x":0.5,"center_y": 0.6}
+            elevaton: 18
+            padding: 30
+            spacing: 40
+            hint_animation:True
+            
+            orientation: 'vertical'
+            shadow_radius: 24
+            shadow_softness: 56
+
+            md_bg_color : 0, 0, 0, 0
+            shadow_softness_size: 3.5
+
+
+
+
+
+
+
+
+
+
+
+            MDGridLayout:
+                cols: 2
+                #orientation: "vertical"
+                size_hint: None, None
+                pos_hint: {"center_x":0.3,"center_y": 0.8}
+                elevaton: 14
+                padding: 25
+                spacing: 0
+
+                MDTextField:
+                    id: user_input
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    hint_text: "Nom d'utilisateur"
+                    hint_text_color_normal:"blue"
+                    text_color_normal: "blue"
+
+                    size_hint_x: None
+                    width: 300
+
+                    mode: "round"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 20
+                    pos_hint: {"center_x": 0.4, "center_y": 0.5}
+
+                MDIconButton:
+                    icon: "account"
+                    hint_size: None
+                    icon_size: "30sp"
+                    pos: password_input.width - self.width + dp(8), 0
+
+
+                    theme_icon_color: "Custom"
+                    icon_color: "red"
+
+                MDTextField:
+                    id: password_input
+                    font_name: "Poppins-Bold.ttf"
+                    hint_text: "Mot de Pass"
+
+                    required: True
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    text_color_normal: "blue"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    hint_text: "Mot de pass"
+                    hint_text_color_normal:"blue"
+
+
+
+
+                    disable: False
+                    text_color: "blue"
+
+
+                    size_hint_x: None
+                    width: 300
+                    mode : "round"
+
+                    font_size: 18
+                    pos_hint: {"center_x": 0.5}
+                MDIconButton:
+                    id: icon
+                    pos: password_input.width - self.width + dp(8), 0
+                    icon: "key-variant"
+                    hint_size: None
+                    icon_size: "30sp"
+                    theme_icon_color: "Custom"
+                    icon_color: "red"
+
+
+                    on_release:
+                        root.lock_word()
+
+
+            MDGridLayout:
+                cols: 3
+                size_hint: None, None
+                pos_hint: {"center_x":0.3,"center_y": 0.8}
+                elevaton: 14
+                padding: 25
+                spacing: 25
+
+                MDFlatButton:
+
+                    md_bg_color: 0,0,0,0
+                    text_color: "white"
+
+                    hint_animation:True
+                    font_size: 12
+
+
+                MDRoundFlatButton:
+                    background_color: "white"
+                    text: "SE CONNECTER"
+                    text_color: "white"
+                    selected_color_background: "orange"
+                    text_color_active: "yellow"
+                    hint_animation:True
+                    font_size: 12
+
+                    font_name: "Poppins-Bold.ttf"
+
+                    md_bg_color: "blue"
+
+
+                    on_press:
+                        root.validate_user(user_input, password_input)
+
+
+                MDFlatButton:
+                    md_bg_color: 0,0,0,0
+
+
+                    hint_animation:True
+                    font_size: 12
+
+
+
+
+
+
+
+        MDFlatButton:
+            text: "Créer un compte"
+            theme_text_color: "Custom"
+            text_color: "blue"
+            text_color_active: "yellow"
+            hint_animation:True
+            font_size: 12
+            font_name: "Poppins-Bold.ttf"
+            md_bg_color: 0,0,0,0
+            pos_hint: {"center_x": 0.4,"center_y": 0.2}
+            on_press:
+
+                root.refuser_useru()
+
+
+
+        MDFlatButton:
+            text: "Mot de pass oublié"
+            theme_text_color: "Custom"
+            text_color: "red"
+
+            text_color_active: "yellow"
+            hint_animation:True
+            font_size: 12
+            pos_hint: {"center_x": 0.6,"center_y": 0.2 }
+            font_name: "Poppins-Bold.ttf"
+            md_bg_color: 0,0,0,0
+            on_press:
+                root.manager.current= "pass_oublier"
+
+
+
+
+
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            orientation: "vertical"
+            md_bg_color : 0, 1, 1, 1
+            MDCard:
+                radius: 36
+                md_bg_color : 0, 1, 1, 1
+                pos_hint: {"center_x": .5, "center_y": .5}
+                FitImage:
+                    source: 'lastlogin_log.jpg'
+                    pos_hint: {"top": 1}
+                    size_hint: (.5, .5)
+                    radius: 36, 36, 0, 0
+
+
+
+
+
+            MDBoxLayout:
+                orientation: "vertical"
+                MDFillRoundFlatIconButton:
+                    text: "Créer un compte"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "add-user.png"
+
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: root.refuser_useru()
+                    #on_press: root.manager.current= "creer_user"
+
+                    icon_left: "plus"
+
+
+
+
+
+
+
+
+
+
+<SecondWindow>:
+    name: "second"
+    Screen:
+
+
+
+
+        MDSmartTile:
+            hint_animation:True
+            box_color: 1, 1, 1, .2
+            source: 'Accueil.jpg'
+
+        MDTopAppBar:
+
+            title:"Bienvénue Sur La Page d'accueil !"
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "green"
+            font_size: 36
+
+
+
+            halign: 'center'
+            size_hint_y: None
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "blue"
+            halign: "center"
+            elevation: 4
+            pos_hint: {"top": 1}
+            md_bg_color: 0,1,1,1
+            specific_text_color: 0, 0, 0, 1
+            left_action_items:
+                [['menu', lambda x: nav_drawer1.set_state("open")]]
+
+            md_bg_color: 0,1,1,1
+            specific_text_color: 0, 0, 0, 1
+
+            right_action_items:
+                [['user-list.png', lambda x: app.liste_useru(),'Les Utilisateur'],['team.png', lambda x: app.liste_fournisseur(),'Les Fournisseur'], ['cart.png', lambda x: app.otherfunc('buy'),'PAGE DE VENTE'], ['rental-car.png', lambda x: app.otherfunc1('buy'),'PAGE DE LOCATION'], ['car-repair.png', lambda x: app.otherfunc2('buy'),'PAGE DE Mainténance'] ]
+
+
+
+
+
+
+
+
+
+
+        MDCard:
+            size_hint: None, None
+            size: 500, 500
+            pos_hint: {"center_x":0.6,"center_y": 0.4}
+            elevaton: 18
+            padding: 20
+            spacing: 20
+            hint_animation:True
+
+            orientation: 'vertical'
+            shadow_radius: 24
+            shadow_softness: 56
+
+            md_bg_color : 0, 0, 0, 0
+            shadow_softness_size: 3.5
+
+
+
+            GridLayout:
+                cols:2
+                spacing: 10, 20
+
+
+                MDLabel:
+                    text: "Identifiant"
+                    theme_text_color: "Custom"
+                    text_color: "blue"
+                    font_size: "18sp"
+                    font_name: "Poppins-Bold.ttf"
+                    fon_size: 24
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+
+
+                MDTextField:
+                    id: id_input
+                    hint_text: "Id ici!"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    hint_text_color_normal:"blue"
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    width: "300dp"
+                    mode: "round"
+
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+                    theme_text_color: "Custom"
+                    text_color: "blue"
+                MDLabel:
+
+                    text: "Model"
+                    theme_text_color: "Custom"
+                    text_color: "blue"
+                    font_size: "18sp"
+                    font_name: "Poppins-Bold.ttf"
+                    fon_size: 24
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+
+                MDTextField:
+                    id: model_input
+                    hint_text: "le model ici!"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "round"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+
+                MDLabel:
+                    text: "Action"
+                    font_size: "18sp"
+                    fon_size: 24
+                    size_hint: 1, None
+                    font_name: "Poppins-Bold.ttf"
+                    height: "30dp"
+                    theme_text_color: "Custom"
+                    text_color: "blue"
+                    background_color: app.theme_cls.bg_normal
+
+                MDTextField:
+                    id: action_input
+                    hint_text: "Veillez écrire (Disponible) ici"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "round"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+                MDLabel:
+                    text: "Couleur"
+                    font_size: "18sp"
+                    size_hint: 1, None
+                    font_name: "Poppins-Bold.ttf"
+                    theme_text_color: "Custom"
+                    text_color: "blue"
+                    fon_size: 24
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+
+                MDTextField:
+                    id: couleur_input
+                    hint_text: "la couleur ici!"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "round"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+                MDLabel:
+                    fon_size: 24
+                    text: "Fournisseur"
+                    font_size: "18sp"
+                    font_name: "Poppins-Bold.ttf"
+                    size_hint: 1, None
+                    theme_text_color: "Custom"
+                    text_color: "blue"
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+
+                MDTextField:
+                    id: fournisseur_input
+                    hint_text: "le nom du fournisseur"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "round"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    size_hint: None, None
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                MDLabel:
+                    fon_size: 24
+                    text: "Quantité"
+                    font_size: "18sp"
+                    font_name: "Poppins-Bold.ttf"
+                    size_hint: 1, None
+                    height: "30dp"
+                    theme_text_color: "Custom"
+                    text_color: "blue"
+                    background_color: app.theme_cls.bg_normal
+
+                MDTextField:
+                    id: quantité_input
+                    hint_text: "Le nombre de véhicule"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "round"
+                    size_hint: None, None
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                Button:
+                    text: "ACHETER"
+                    font_size: "18sp"
+                    size_hint: None, None
+                    size: 100,30
+                    text_color_active: "yellow"
+                    hint_animation:True
+
+
+
+                    background_color: 0,1,0,1
+                    on_press: root.ajouter(id_input, model_input, couleur_input, action_input, fournisseur_input, quantité_input)
+                Button:
+                    text: "Modifier"
+
+                    size_hint: None, None
+                    size: 100,30
+                    hint_animation:True
+                    font_size: "18sp"
+
+
+                    text_color_active: "yellow"
+
+                    background_color: 0,1,0,1
+                    on_press: root.modifier(id_input, model_input, couleur_input, action_input, fournisseur_input)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        GridLayout:
+            cols: 2
+            row_force_default: True
+            row_default_height: 40
+
+
+
+            spacing: 10
+            padding: 10
+            pos_hint: {"center_x": .5, "center_y": .4}
+
+            MDTextField:
+                id: recherche_input
+                hint_text: "rechercher ici"
+                hint_text_color_normal:"blue"
+                width: "150dp"
+                mode: "round"
+                size_hint: None, None
+                height: "30dp"
+                color_mode: "custom"
+                text_color: "blue"
+                halign: "center"
+
+                required: True
+                valign: "center"
+                foreground_color: 1, 0, 1, 1
+                line_color_focus: 1, 0, 1, 1
+
+
+            MDRectangleFlatIconButton:
+                text: "Récherche"
+
+                text_color: "white"
+                font_name: "Poppins-Bold.ttf"
+
+                md_bg_color: 0,0,1,1
+
+
+                theme_icon_color: "Custom"
+                icon_color: "yellow"
+                pos_hint: {"center_x": .7}
+
+
+
+                icon: "magnify"
+                icon_size: "20sp"
+                on_press: root.recherche(recherche_input)
+
+        MDNavigationDrawer:
+            id: nav_drawer1
+            orientation: "vertical"
+            md_bg_color : 0, 1, 1, 1
+            MDCard:
+                radius: 36
+                md_bg_color : 0, 1, 1, 1
+                pos_hint: {"center_x": .5, "center_y": .5}
+                FitImage:
+                    source: 'LDK1.jpg'
+                    pos_hint: {"top": 1}
+                    size_hint: (.5, .5)
+                    radius: 36, 36, 0, 0
+
+
+
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: 10
+                paddin: 5, 5
+
+                MDFillRoundFlatIconButton:
+                    text: "AJouter des Fournisseur "
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "customer-support.png"
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: app.root.current = "customer"
+                MDFillRoundFlatIconButton:
+                    text: "Créer un compte d'utilisateur"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "add-user.png"
+
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: root.manager.current= "creer_user"
+
+                    icon_left: "plus"
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: 5
+                paddin: 5, 5
+
+
+                MDRectangleFlatIconButton:
+                    text: "Déja Vendu"
+                    icon: "delete"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: "gray"
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "orange"
+
+                    on_press: root.listannuler()
+
+
+#MDFillRectangleFlatIconButton:
+
+                MDRectangleFlatIconButton:
+                    text: "Tous les Véhicule"
+                    icon: "content-save"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: "gray"
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "blue"
+
+                    on_press: root.listtout()
+                    font_name: "Poppins-Bold.ttf"
+
+
+                MDRectangleFlatIconButton:
+                    text: "Véhicule Disponible"
+                    icon: "dots-vertical"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: "gray"
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "blue"
+
+
+
+
+                    on_press: root.listdispo()
+                    font_name: "Poppins-Bold.ttf"
+                MDRectangleFlatIconButton:
+                    text: "Véhicule Louer"
+                    icon: "map"
+                    icon_left: "dots-vertical"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: "gray"
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    on_press: root.listlouer()
+                MDRectangleFlatIconButton:
+                    text: "Véhicule en Mainténance"
+                    icon: "parameter.jpg"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: "gray"
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    on_press: root.listavendre()
+
+
+
+
+
+
+<ThirdWindow>:
+    name: "third"
+    Screen:
+        MDSmartTile:
+            hint_animation:True
+            box_color: 1, 1, 1, .2
+
+            source: "vente_vente.jpg"
+
+        MDTopAppBar:
+
+            title:"Bienvénue Sur La Page de Vente !"
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "green"
+            font_size: 36
+
+
+
+            halign: 'center'
+            size_hint_y: None
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "blue"
+            halign: "center"
+            elevation: 4
+            pos_hint: {"top": 1}
+            left_action_items:
+                [['menu', lambda x: nav_drawer2.set_state("open")]]
+            md_bg_color: 0,1,1,1
+            specific_text_color: 0, 0, 0, 1
+
+            right_action_items:
+                [['cart.png', lambda x: app.otherfunc('buy'),'PAGE DE VENTE'], ['rental-car.png', lambda x: app.otherfunc1('buy'),'PAGE DE LOCATION'], ['car-repair.png', lambda x: app.otherfunc2('buy'),'PAGE DE Mainténance'],['home', lambda x: app.home_btn2('home'),'Accueil']]
+        MDCard:
+            size_hint: None, None
+            size: 700, 700
+            elevaton: 18
+            padding: 20
+            spacing: 20
+
+            hint_animation:True
+            pos_hint: {"center_x": .5, "center_y": .5}
+
+            orientation: 'vertical'
+            shadow_radius: 24
+            shadow_softness: 56
+
+            md_bg_color : 0, 0, 0, 0
+            shadow_softness_size: 3.5
+
+
+
+
+
+
+            MDGridLayout:
+                cols:2
+                spacing: 25,5
+                padding: 50
+
+
+                MDTextField:
+                    id: id_input1
+                    hint_text: "Id du véhicule ici!"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: 1, None
+                    height: "20dp"
+                    background_color: app.theme_cls.bg_normal
+
+                MDTextField:
+                    id: model_input1
+                    hint_text: "le model ici!"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+
+                    size_hint: 1, None
+                    height: "20dp"
+                    background_color: app.theme_cls.bg_normal
+
+
+
+                MDTextField:
+                    id: prix_input1
+                    hint_text: "le prix ici!"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+
+                    size_hint: 1, None
+                    height: "20dp"
+                    background_color: app.theme_cls.bg_normal
+
+
+                MDTextField:
+                    id: action_input1
+                    hint_text: "Taper Vendu ici!"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: 1, None
+                    height: "20dp"
+                    background_color: app.theme_cls.bg_normal
+
+
+                MDTextField:
+                    id: client_input1
+                    hint_text: "le nom et address du client"
+                    hint_text_color_normal:"blue"
+                    hint_text_color: "blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    size_hint: None, None
+                    height: "20dp"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    background_color: app.theme_cls.bg_normal
+
+
+                MDTextField:
+                    id: quantité_input1
+                    hint_text: "Le nombre de véhicule"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: None, None
+                    height: "20dp"
+                    background_color: app.theme_cls.bg_normal
+                MDRaisedButton:
+
+                    md_bg_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    text_color_active: "yellow"
+                    hint_animation:True
+
+
+                    text: 'Vendre'
+
+                    badge_icon: "numeric-5"
+                    on_press: root.vente(id_input1, model_input1, prix_input1, action_input1, client_input1, quantité_input1)
+                MDFillRoundFlatIconButton:
+
+                    md_bg_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    text_color_active: "yellow"
+                    hint_animation:True
+
+
+                    text: 'Actualiser'
+                    icon: 'refresh'
+                    md_bg_color: "gray"
+                    font_name: "Poppins-Bold.ttf"
+
+                    text_color: "blue"
+
+                    badge_icon: "numeric-5"
+                    on_press: root.liste_vente_liste(liste)
+
+            AnchorLayout:
+                id: liste
+                width: 600
+
+
+        MDNavigationDrawer:
+            id: nav_drawer2
+            orientation: "vertical"
+            md_bg_color : 0, 1, 1, 1
+            MDCard:
+                radius: 36
+                md_bg_color : 0, 1, 1, 1
+                pos_hint: {"center_x": .5, "center_y": .5}
+                FitImage:
+                    source: 'vente_vente.jpg'
+                    pos_hint: {"top": 1}
+                    size_hint: (.5, .5)
+                    radius: 36, 36, 0, 0
+
+
+
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: 10
+                paddin: 5, 5
+
+                MDFillRoundFlatIconButton:
+                    text: "Vente"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "icon_buy.png"
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: app.root.current = "third"
+
+
+
+                MDFillRoundFlatIconButton:
+                    text: "Location"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "car-rent.png"
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: app.root.current = "four"
+
+                MDFillRoundFlatIconButton:
+                    text: "Mainténance"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "car-repair.png"
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: app.root.current = "five"
+                Widget:
+                    id: widget
+
+
+
+
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: 5
+                paddin: 5, 5
+
+
+                MDRectangleFlatIconButton:
+                    text: "Liste vendu"
+                    icon: "delete"
+                    text_color: "white"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 1,0,1,1
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "yellow"
+
+                    on_press: root.liste_vente_liste(liste)
+
+
+
+#MDFillRectangleFlatIconButton:
+
+                MDRectangleFlatIconButton:
+                    text: "Tous les Véhicule"
+                    icon: "content-save"
+                    text_color: "white"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,1,1
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "white"
+
+                    on_press: root.listtout()
+                    font_name: "Poppins-Bold.ttf"
+
+
+
+<FourWindow>:
+    name: "four"
+    Screen:
+        MDSmartTile:
+            hint_animation:True
+            box_color: 1, 1, 1, .2
+            source: "vendre.jpg"
+
+        MDTopAppBar:
+
+            title:"Bienvénue Sur La Page de Location !"
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "green"
+            font_size: 36
+
+
+
+            halign: 'center'
+            size_hint_y: None
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "blue"
+            halign: "center"
+            elevation: 4
+            pos_hint: {"top": 1}
+            left_action_items:
+                [['menu', lambda x: nav_drawer3.set_state("open")]]
+
+            md_bg_color: 0,1,1,1
+            specific_text_color: 0, 0, 0, 1
+
+            right_action_items:
+                [['cart.png', lambda x: app.otherfunc('buy'),'PAGE DE VENTE'], ['rental-car.png', lambda x: app.otherfunc1('buy'),'PAGE DE LOCATION'], ['car-repair.png', lambda x: app.otherfunc2('buy'),'PAGE DE Mainténance'],['home', lambda x: app.home_btn2('home'),'Accueil'] ]
+        MDCard:
+            size_hint: None, None
+            size: 700, 700
+            elevaton: 18
+            padding: 20
+            spacing: 20
+            hint_animation:True
+            pos_hint: {"center_x": .5, "center_y": .5}
+
+            orientation: 'vertical'
+            shadow_radius: 24
+            shadow_softness: 56
+
+            md_bg_color : 0, 0, 0, 0
+            shadow_softness_size: 3.5
+
+
+
+
+
+
+
+
+
+            MDGridLayout:
+                cols:2
+                spacing: 25,5
+                padding: 50
+
+
+
+
+                MDTextField:
+                    id: id_input2
+                    hint_text: "Id du véhicule ici!"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    font_color: "blue"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+
+
+
+
+
+                MDTextField:
+                    id: model_input2
+                    hint_text: "le model avec prix de location ici!"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    font_color: "blue"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+
+
+
+                MDTextField:
+                    id: datelocation_input2
+                    hint_text: "la date du débit et fin!"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    font_color: "blue"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+
+
+                MDTextField:
+                    id: action_input2
+                    hint_text: "Taper Louer ici!"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    font_color: "blue"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+
+
+                MDTextField:
+                    id: locateur_input2
+                    hint_text: "Son nom et son address ici!!"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    font_color: "blue"
+                    size_hint: None, None
+                    height: "30dp"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    background_color: app.theme_cls.bg_normal
+
+
+
+                MDTextField:
+                    id: quantité_input2
+                    hint_text: "Le nombre de véhicule"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    font_color: "blue"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: None, None
+                    height: "30dp"
+                    background_color: app.theme_cls.bg_normal
+
+
+
+
+                MDFillRoundFlatIconButton:
+
+                    md_bg_color: "gray"
+                    font_name: "Poppins-Bold.ttf"
+                    hint_animation:True
+                    text_color_active: "yellow"
+                    hint_animation:True
+                    text_color: "blue"
+
+
+                    text: 'Actualiser'
+                    icon: 'refresh'
+                    badge_icon: "numeric-5"
+                    on_press: root.louer_liste(liste1)
+                MDRaisedButton:
+
+                    md_bg_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    text_color_active: "yellow"
+                    hint_animation:True
+
+
+                    text: 'Louer'
+                    icon: 'twitter'
+                    badge_icon: "numeric-5"
+                    on_press: root.louer(id_input2, model_input2, datelocation_input2, action_input2, locateur_input2, quantité_input2)
+            AnchorLayout:
+                id: liste1
+                width: 600
+                md_bg_color: "blue"
+
+
+
+        MDNavigationDrawer:
+            id: nav_drawer3
+            orientation: "vertical"
+            md_bg_color : 0, 1, 1, 1
+            MDCard:
+                radius: 36
+                md_bg_color : 0, 1, 1, 1
+                pos_hint: {"center_x": .5, "center_y": .5}
+                FitImage:
+                    source: 'vendre.jpg'
+                    pos_hint: {"top": 1}
+                    size_hint: (.5, .5)
+                    radius: 36, 36, 0, 0
+
+
+
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: 10
+                paddin: 5, 5
+
+                MDFillRoundFlatIconButton:
+                    text: "Vente"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "icon_buy.png"
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: app.root.current = "third"
+
+
+
+                MDFillRoundFlatIconButton:
+                    text: "Location"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "car-rent.png"
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: app.root.current = "four"
+
+                MDFillRoundFlatIconButton:
+                    text: "Mainténance"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "car-repair.png"
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: app.root.current = "five"
+                Widget:
+                    id: widget
+
+
+
+
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: 5
+                paddin: 5, 5
+
+
+                MDRectangleFlatIconButton:
+                    text: "Liste Louer"
+                    icon: "car-rent.png"
+                    text_color: "white"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 1,0,1,1
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "red"
+
+                    on_press: root.louer_liste(liste1)
+
+
+
+#MDFillRectangleFlatIconButton:
+
+                MDRectangleFlatIconButton:
+                    text: "Tous les Véhicule"
+                    icon: "content-save"
+                    text_color: "white"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,1,1
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "white"
+
+                    on_press: root.listtout()
+                    font_name: "Poppins-Bold.ttf"
+
+
+
+
+
+<FiveWindow>:
+    name: "five"
+    Screen:
+        MDSmartTile:
+            hint_animation:True
+            box_color: 0, 0, 0, 0
+            source: "MMM.jpg"
+
+        MDTopAppBar:
+
+            title:"Bienvénue Sur La Page de Mainténance !"
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "green"
+            font_size: 36
+
+
+
+            halign: 'center'
+            size_hint_y: None
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "blue"
+            halign: "center"
+            elevation: 4
+            pos_hint: {"top": 1}
+            left_action_items:
+                [['menu', lambda x: nav_drawer4.set_state("open")]]
+
+            md_bg_color: 0,1,1,1
+            specific_text_color: 0, 0, 0, 1
+
+            right_action_items:
+                [['cart.png', lambda x: app.otherfunc('buy'),'PAGE DE VENTE'], ['rental-car.png', lambda x: app.otherfunc1('buy'),'PAGE DE LOCATION'], ['car-repair.png', lambda x: app.otherfunc2('buy'),'PAGE DE Mainténance'],['home', lambda x: app.home_btn2('home'),'Accueil'] ]
+        MDCard:
+            size_hint: None, None
+            size: 700, 700
+            pos_hint: {"center_x": .5, "center_y": .5}
+            elevaton: 18
+            padding: 20
+            spacing: 20
+            hint_animation:True
+
+            orientation: 'vertical'
+            shadow_radius: 24
+            shadow_softness: 56
+
+            md_bg_color : 0, 0, 0, 0
+            shadow_softness_size: 3.5
+
+            MDGridLayout:
+                cols:2
+                spacing: 25,5
+                padding: 50
+                MDTextField:
+                    id: id_input3
+                    hint_text: "Id du vehicule ici!"
+                    hint_text_color_normal:"blue"
+                    width: "350dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    font_color: "blue"
+                    color_mode: "custom"
+                    color: "blue"
+                    input_field_background_color_normal:"coral"
+
+                    text_color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    fill_color_normal: "white"
+                    size_hint: None, None
+                    height: "30dp"
+
+                MDTextField:
+                    id: model_input3
+                    hint_text: "le model du vehicule ici!"
+                    hint_text_color_normal:"blue"
+                    width: "350dp"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    font_color: "blue"
+                    text_color_mode: "custom"
+                    required: True
+                    valign: "center"
+                    fill_color_normal: 1, 0, 1, 1
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    fill_color_normal: "white"
+                    size_hint: None, None
+                    height: "30dp"
+                    #background_color: app.theme_cls.bg_normal
+                MDTextField:
+                    id: guarrage_input3
+                    hint_text: "le nom du guarrage ici!"
+                    hint_text_color_normal:"blue"
+                    width: "350dp"
+                    text_color_mode: "custom"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    font_color: "blue"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    fill_color_normal: "white"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: None, None
+                    height: "30dp"
+                    #background_color: app.theme_cls.bg_normal
+                MDTextField:
+                    id: action_input3
+                    hint_text: "Taper Maintenance"
+                    hint_text_color_normal:"blue"
+                    width: "350dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    font_color: "blue"
+                    text_color_mode: "custom"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    fill_color_normal: "white"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: None, None
+                    height: "30dp"
+                    #background_color: app.theme_cls.bg_normal
+                MDTextField:
+                    id: description_input3
+                    hint_text: "décrire le problème et le prix de réparation !"
+                    hint_text_color_normal:"blue"
+                    width: "350dp"
+                    mode: "fill"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    font_color: "blue"
+                    size_hint: None, None
+                    text_color_mode: "custom"
+                    fill_color_normal: "white"
+                    height: "30dp"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    text_color_normal:"blue"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    #background_color: app.theme_cls.bg_normal
+
+                MDTextField:
+                    id: quantité_input3
+                    hint_text: "Le nombre de véhicule"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    font_color: "blue"
+                    color_mode: "custom"
+                    fill_color_normal: "white"
+                    text_color: "blue"
+                    text_color_mode: "custom"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: None, None
+                    height: "30dp"
+                    #background_color: app.theme_cls.bg_normal
+
+
+
+
+
+                MDFillRoundFlatIconButton:
+
+                    md_bg_color: "gray"
+                    font_name: "Poppins-Bold.ttf"
+                    text_color_active: "yellow"
+                    hint_animation:True
+                    text_color: "blue"
+
+
+                    text: 'Actualiser'
+                    icon: "refresh"
+                    on_press: root.maintenance_liste(liste2)
+                MDRaisedButton:
+
+                    md_bg_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    text_color_active: "yellow"
+                    hint_animation:True
+
+
+                    text: 'Mainténance'
+                    icon: 'twitter'
+                    badge_icon: "numeric-5"
+                    on_press: root.maintenance(id_input3, model_input3, guarrage_input3, action_input3, description_input3, quantité_input3)
+
+            AnchorLayout:
+                id: liste2
+                width: 600
+                md_bg_color: "blue"
+
+
+
+        MDNavigationDrawer:
+            id: nav_drawer4
+            orientation: "vertical"
+            md_bg_color : 0, 1, 1, 1
+            MDCard:
+                radius: 36
+                md_bg_color : 0, 1, 1, 1
+                pos_hint: {"center_x": .5, "center_y": .5}
+                FitImage:
+                    source: 'MMM.jpg'
+                    pos_hint: {"top": 1}
+                    size_hint: (.5, .5)
+                    radius: 36, 36, 0, 0
+
+
+
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: 10
+                paddin: 5, 5
+
+                MDFillRoundFlatIconButton:
+                    text: "Vente"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "icon_buy.png"
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: app.root.current = "third"
+
+
+
+                MDFillRoundFlatIconButton:
+                    text: "Location"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "car-rent.png"
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: app.root.current = "four"
+
+                MDFillRoundFlatIconButton:
+                    text: "Mainténance"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "car-repair.png"
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: app.root.current = "five"
+                Widget:
+                    id: widget
+
+
+
+
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: 5
+                paddin: 5, 5
+
+
+                MDRectangleFlatIconButton:
+                    text: "Liste Mainténance"
+                    icon: "parameter.jpg"
+                    text_color: "white"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 1,0,1,1
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "red"
+
+                    on_press: root.maintenance_liste(liste2)
+
+
+#MDFillRectangleFlatIconButton:
+
+                MDRectangleFlatIconButton:
+                    text: "Tous les Véhicule"
+                    icon: "content-save"
+                    text_color: "white"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,1,1
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "white"
+
+                    on_press: root.listtout()
+                    font_name: "Poppins-Bold.ttf"
+
+
+
+
+
+<CreerUsers>:
+    name: "creer_user"
+    Screen:
+        MDSmartTile:
+            hint_animation:True
+
+            box_color: 1, 1, 1, .2
+            source: "LLL.jpg"
+
+        MDTopAppBar:
+
+            title:"Bienvénue Sur La Page de Création d'un compte !"
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "green"
+            font_size: 36
+
+
+
+            halign: 'center'
+            size_hint_y: None
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "blue"
+            halign: "center"
+            elevation: 4
+            pos_hint: {"top": 1}
+
+            md_bg_color: 0,1,1,1
+            specific_text_color: 0, 0, 0, 1
+
+            left_action_items:
+                [['menu', lambda x: nav_drawer5.set_state("open")]]
+
+            right_action_items:
+
+                [["logout", lambda x: app.logout_btn('logout'), 'Page Login'], ['home', lambda x: app.home_btn2('home'),'Accueil']]
+
+
+
+
+        MDCard:
+            size_hint: None, None
+            size: 500, 400
+            pos_hint: {"center_x":0.5,"center_y": 0.5}
+            elevaton: 18
+            padding: 5
+            spacing: 0.5
+            hint_animation:True
+
+            orientation: 'vertical'
+            shadow_radius: 24
+            shadow_softness: 56
+
+            md_bg_color : 0,0,0,0
+            shadow_softness_size: 3.5
+
+
+            MDLabel:
+                id: welcome_label
+                text:"Nom d'utilisateur"
+                font_name: "Poppins-Bold.ttf"
+                theme_text_color: "Custom"
+                text_color: "blue"
+                font_size: 24
+
+
+
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
+            MDTextField:
+                id: utilisateur_input
+                hint_text: "Nom d'utilisateur"
+                hint_text_color_normal:"blue"
+                icon_right: "account"
+                size_hint_x: None
+                color_mode: "custom"
+                text_color: "blue"
+                halign: "center"
+                required: True
+                valign: "center"
+                foreground_color: 1, 0, 1, 1
+                line_color_focus: 1, 0, 1, 1
+                width: 300
+                mode: "round"
+                font_name: "Poppins-Bold.ttf"
+                font_size: 20
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                md_bg_color : [0, 2, 1, 0]
+            MDLabel:
+                id: welcome_label
+                text:"Mot de pass"
+                font_name: "Poppins-Bold.ttf"
+                theme_text_color: "Custom"
+                text_color: "blue"
+                font_size: 24
+
+
+
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
+
+            MDTextField:
+                id: pass_input
+                color_mode: "custom"
+                text_color: "blue"
+                halign: "center"
+                required: True
+                valign: "center"
+                foreground_color: 1, 0, 1, 1
+                line_color_focus: 1, 0, 1, 1
+                font_name: "Poppins-Bold.ttf"
+                hint_text: "Mot de Pass"
+                hint_text_color_normal:"blue"
+                icon_right: "eye-off"
+                size_hint_x: None
+                width: 300
+                mode : "round"
+                icon_left: "key-variant"
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+            MDLabel:
+                id: welcome_label
+                text:"Répeter mot de pass"
+                font_name: "Poppins-Bold.ttf"
+                theme_text_color: "Custom"
+                text_color: "blue"
+                font_size: 24
+
+
+
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
+            MDTextField:
+                id: repeter_input
+                color_mode: "custom"
+                text_color: "blue"
+                halign: "center"
+                required: True
+                valign: "center"
+                foreground_color: 1, 0, 1, 1
+                line_color_focus: 1, 0, 1, 1
+                font_name: "Poppins-Bold.ttf"
+                hint_text: "Répeter Mot de Pass"
+                hint_text_color_normal:"blue"
+                icon_right: "eye-off"
+                disable:
+                size_hint_x: None
+                width: 300
+                mode : "round"
+                icon_left: "key-variant"
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+
+
+
+
+            MDRoundFlatButton:
+                background_color: "white"
+                text: "Créer"
+                text_color: "white"
+                selected_color_background: "orange"
+                text_color_active: "yellow"
+                hint_animation:True
+                font_size: 12
+                font_name: "Poppins-Bold.ttf"
+                pos_hint: {"center_x": 0.5}
+                md_bg_color: "blue"
+
+
+                on_press:
+                    root.create_user()
+
+
+
+
+
+
+
+
+
+        MDNavigationDrawer:
+            id: nav_drawer5
+            orientation: "vertical"
+            md_bg_color : 0, 1, 1, 1
+            MDCard:
+                radius: 36
+                md_bg_color : 0, 1, 1, 1
+                pos_hint: {"center_x": .5, "center_y": .5}
+                FitImage:
+                    source: 'lastlogin_log.jpg'
+                    pos_hint: {"top": 1}
+                    size_hint: (.5, .5)
+                    radius: 36, 36, 0, 0
+
+
+
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: 10
+                paddin: 5, 5
+
+                MDFillRoundFlatIconButton:
+                    text: "Créer un compte"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "add-user.png"
+
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+
+
+                    icon_left: "plus"
+
+
+
+
+
+
+
+<PassOublier>:
+    name: "pass_oublier"
+    Screen:
+        MDSmartTile:
+            hint_animation:True
+
+            box_color: 1, 1, 1, .2
+            source: "LLL.jpg"
+
+        MDTopAppBar:
+
+            title:"Bienvénue Sur La Page de Modification du Mot de pass !"
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "green"
+            font_size: 36
+
+
+
+            halign: 'center'
+            size_hint_y: None
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "blue"
+            halign: "center"
+            elevation: 4
+            pos_hint: {"top": 1}
+            md_bg_color: 0,1,1,1
+            specific_text_color: 0, 0, 0, 1
+            left_action_items:
+                [['menu', lambda x: nav_drawer6.set_state("open")]]
+
+            right_action_items:
+
+                [["logout", lambda x: app.logout_btn1('logout')]]
+
+
+
+        MDCard:
+            size_hint: None, None
+            size: 500, 400
+            pos_hint: {"center_x":0.5,"center_y": 0.5}
+            elevaton: 18
+            padding: 5
+            spacing: 0.5
+            hint_animation:True
+
+            orientation: 'vertical'
+            shadow_radius: 24
+            shadow_softness: 56
+
+            md_bg_color : 0,0,0,0
+            shadow_softness_size: 3.5
+
+
+            MDLabel:
+                id: welcome_label
+                text:"Nom d'utilisateur"
+                font_name: "Poppins-Bold.ttf"
+                theme_text_color: "Custom"
+                text_color: "blue"
+                font_size: 24
+
+
+
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
+            MDTextField:
+                id: utilisateur_input1
+                color_mode: "custom"
+                text_color: "blue"
+                halign: "center"
+                required: True
+                valign: "center"
+                foreground_color: 1, 0, 1, 1
+                line_color_focus: 1, 0, 1, 1
+                hint_text: "Nom d'utilisateur"
+                hint_text_color_normal:"blue"
+                icon_right: "account"
+                size_hint_x: None
+                width: 300
+                mode: "round"
+                font_name: "Poppins-Bold.ttf"
+                font_size: 20
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                md_bg_color : [0, 2, 1, 0]
+            MDLabel:
+                id: welcome_label
+                text:"Nouveau mot de pass"
+                font_name: "Poppins-Bold.ttf"
+                theme_text_color: "Custom"
+                text_color: "blue"
+                font_size: 24
+
+
+
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
+            MDTextField:
+                id: pass_input1
+                color_mode: "custom"
+                text_color: "blue"
+                halign: "center"
+                required: True
+                valign: "center"
+                foreground_color: 1, 0, 1, 1
+                line_color_focus: 1, 0, 1, 1
+                font_name: "Poppins-Bold.ttf"
+                hint_text: "Mot de Pass"
+                hint_text_color_normal:"blue"
+                icon: "eye_off"
+                size_hint_x: None
+                width: 300
+                mode : "round"
+                icon_left: "key-variant"
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+            MDLabel:
+                id: welcome_label
+                text:"Répeter mot de pass"
+                font_name: "Poppins-Bold.ttf"
+                theme_text_color: "Custom"
+                text_color: "blue"
+                font_size: 24
+
+
+
+                halign: 'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
+            MDTextField:
+                id: repeter_input1
+                color_mode: "custom"
+                text_color: "blue"
+                halign: "center"
+                required: True
+                valign: "center"
+                foreground_color: 1, 0, 1, 1
+                line_color_focus: 1, 0, 1, 1
+                font_name: "Poppins-Bold.ttf"
+                hint_text: "Répéter Mot de Pass"
+                hint_text_color_normal:"blue"
+                icon_right: "eye-off"
+                size_hint_x: None
+                width: 300
+                mode : "round"
+                icon_left: "key-variant"
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+
+
+
+
+
+            MDRoundFlatButton:
+                background_color: "white"
+                text: "Modifier"
+                text_color: "white"
+                selected_color_background: "orange"
+                text_color_active: "yellow"
+                hint_animation:True
+                font_size: 12
+                font_name: "Poppins-Bold.ttf"
+                pos_hint: {"center_x": 0.5}
+                md_bg_color: "blue"
+
+
+                on_press:
+                    root.forget_password()
+
+
+
+
+
+
+
+
+
+        MDNavigationDrawer:
+            id: nav_drawer6
+            orientation: "vertical"
+            md_bg_color : 0, 1, 1, 1
+            MDCard:
+                radius: 36
+                md_bg_color : 0, 1, 1, 1
+                pos_hint: {"center_x": .5, "center_y": .5}
+                FitImage:
+                    source: 'lastlogin_log.jpg'
+                    pos_hint: {"top": 1}
+                    size_hint: (.5, .5)
+                    radius: 36, 36, 0, 0
+
+
+
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: 10
+                paddin: 5, 5
+                MDFillRoundFlatIconButton:
+                    text: "Créer un compte"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "add-user.png"
+
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: root.refuser_userp()
+
+                    icon_left: "plus"
+
+
+<CustomerWindow>:
+    name: "customer"
+    Screen:
+        MDSmartTile:
+            hint_animation:True
+            box_color: 1, 1, 1, .2
+            source: "exchange.png"
+
+        MDTopAppBar:
+
+            title:"Bienvénue Sur La Page des Fournisseur!"
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "green"
+            font_size: 36
+
+
+
+            halign: 'center'
+            size_hint_y: None
+            font_name: "Spooky Monster.otf"
+            theme_text_color: "Custom"
+            text_color: "blue"
+            halign: "center"
+            elevation: 4
+            pos_hint: {"top": 1}
+            left_action_items:
+                [['menu', lambda x: nav_drawer3.set_state("open")]]
+
+            md_bg_color: 0,1,1,1
+            specific_text_color: 0, 0, 0, 1
+
+            right_action_items:
+                [['team.png', lambda x: app.liste_fourni(),'Les Fournisseur'], ['cart.png', lambda x: app.otherfunc('buy'),'PAGE DE VENTE'], ['rental-car.png', lambda x: app.otherfunc1('buy'),'PAGE DE LOCATION'], ['car-repair.png', lambda x: app.otherfunc2('buy'),'PAGE DE Mainténance'],['home', lambda x: app.home_btn2('home'),'Accueil'] ]
+        MDCard:
+            size_hint: None, None
+            size: 700, 700
+            elevaton: 18
+            padding: 20
+            spacing: 20
+            hint_animation:True
+            pos_hint: {"center_x": .5, "center_y": .5}
+
+            orientation: 'vertical'
+            shadow_radius: 24
+            shadow_softness: 56
+
+            md_bg_color : 0, 0, 0, 0
+            shadow_softness_size: 3.5
+
+
+
+
+
+
+
+
+
+            MDGridLayout:
+                cols:2
+                spacing: 25,5
+                padding: 50
+
+
+
+
+                MDTextField:
+                    id: nom_cos_input
+                    hint_text: "le nom du fournisseur ici!"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: "white"
+
+
+
+
+
+                MDTextField:
+                    id: num_cos_input
+                    hint_text: "le numéro de téléphone ici"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    icon: "name"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: "white"
+
+
+
+                MDTextField:
+                    id: date_cos_input
+                    hint_text: "la date ici!"
+                    hint_text: "Date /dd/mm/yyyy"
+                    helper_text: "Entrer une date valide"
+                    validator: "date"
+                    date_format: "dd/mm/yyyy"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: "white"
+
+
+                MDTextField:
+                    id:  email_cos_input
+                    #hint_text: "examplekeita@gmail.com "
+                    hint_text: "Email"
+                    helper_text: "user@gmail.com"
+                    validator: "email"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    icon_right: "email"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: 1, None
+                    height: "30dp"
+                    background_color: "white"
+
+
+                MDTextField:
+                    id: produit_cos_input
+                    hint_text:"le produit ici!"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    size_hint: None, None
+                    height: "30dp"
+                    icon: "mail"
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    background_color: "white"
+
+
+
+                MDTextField:
+                    id: quantité_cos_input
+                    hint_text: "Le nombre de véhicule livré"
+                    hint_text_color_normal:"blue"
+                    width: "300dp"
+                    mode: "fill"
+                    text_color_normal:"blue"
+                    font_name: "Poppins-Bold.ttf"
+                    font_size: 14
+                    color_mode: "custom"
+                    text_color: "blue"
+                    halign: "center"
+                    required: True
+                    valign: "center"
+                    foreground_color: 1, 0, 1, 1
+                    line_color_focus: 1, 0, 1, 1
+                    size_hint: None, None
+                    height: "30dp"
+                    background_color: "white"
+                MDRaisedButton:
+
+                    md_bg_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    text_color_active: "yellow"
+                    hint_animation:True
+
+
+                    text: 'Ajouter'
+                    icon_left: "add-user.png"
+                    badge_icon: "numeric-5"
+                    on_press: root.ajouter(nom_cos_input, num_cos_input, date_cos_input, email_cos_input, produit_cos_input, quantité_cos_input)
+                MDRectangleFlatIconButton:
+                    text: "Actualiser"
+                    icon: "refresh"
+                    text_color: "white"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 1,0,1,1
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "red"
+
+                    on_press: root.liste_fourni()
+
+                MDRectangleFlatIconButton:
+                    text: "Supprimer"
+                    icon: "delete"
+                    text_color: "white"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,1,1
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "white"
+
+                    on_press: root.mod(nom_cos_input)
+
+            AnchorLayout:
+                id: list_customer
+                width: 600
+                md_bg_color: "blue"
+
+
+
+        MDNavigationDrawer:
+            id: nav_drawer3
+            orientation: "vertical"
+            md_bg_color : 0, 1, 1, 1
+            MDCard:
+                radius: 36
+                md_bg_color : 0, 1, 1, 1
+                pos_hint: {"center_x": .5, "center_y": .5}
+                FitImage:
+                    source: 'customer-support.png'
+                    pos_hint: {"top": 1}
+                    size_hint: (.5, .5)
+                    radius: 36, 36, 0, 0
+
+
+
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: 10
+                paddin: 5, 5
+
+                MDFillRoundFlatIconButton:
+                    text: "Vente"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "icon_buy.png"
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: app.root.current = "third"
+
+
+
+                MDFillRoundFlatIconButton:
+                    text: "Location"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "car-rent.png"
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: app.root.current = "four"
+
+                MDFillRoundFlatIconButton:
+                    text: "Mainténance"
+                    text_color: "blue"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 0,0,0,0
+
+                    icon: "car-repair.png"
+                    icon_size: "55sp"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press: app.root.current = "five"
+                Widget:
+                    id: widget
+
+
+
+
+
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: 5
+                paddin: 5, 5
+
+
+                MDRectangleFlatIconButton:
+                    text: "Liste des Founisseur"
+                    icon: "shortlist.png"
+                    text_color: "white"
+                    font_name: "Poppins-Bold.ttf"
+                    md_bg_color: 1,0,1,1
+                    hint_size: None
+
+                    theme_icon_color: "Custom"
+                    icon_color: "blue"
+
+                    on_press: root.liste_fourni()
